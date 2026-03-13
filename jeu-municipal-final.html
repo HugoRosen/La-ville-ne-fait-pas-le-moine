@@ -29,12 +29,7 @@ body{font-family:'Bricolage Grotesque',sans-serif;background:var(--bg);color:var
 .bbig{padding:.85rem 2.2rem;border-radius:9px;font-family:'Bricolage Grotesque',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;border:none;transition:all .18s;letter-spacing:.04em}
 .bbig.pr{background:var(--gold);color:#0c0b09}.bbig.pr:hover{background:var(--gold2)}
 .bbig.gh{background:transparent;color:var(--text);border:1.5px solid var(--border2)}.bbig.gh:hover{background:var(--card)}
-.s-load{margin-top:1.8rem;z-index:1;background:var(--card);border:1px solid var(--border2);border-radius:11px;padding:1.1rem 1.4rem;width:90%;max-width:400px;text-align:center}
-.s-load-lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);display:block;margin-bottom:.6rem}
-.filebtn{display:inline-block;padding:.55rem 1.3rem;background:var(--surf);border:1.5px solid var(--border2);border-radius:7px;font-size:.8rem;color:var(--text);cursor:pointer;transition:all .15s;font-family:inherit;font-weight:500}
-.filebtn:hover{border-color:var(--gold);color:var(--gold)}
-.filebtn input{display:none}
-#fstatus{font-size:.72rem;color:var(--green);margin-top:.45rem;min-height:1.1em}
+
 
 /* TOPBAR */
 .topbar{display:flex;align-items:center;padding:.6rem 1rem;border-bottom:1px solid var(--border);background:var(--surf);gap:.8rem;flex-shrink:0}
@@ -85,16 +80,16 @@ body{font-family:'Bricolage Grotesque',sans-serif;background:var(--bg);color:var
 #svgfr{width:100%;flex:1;min-height:0;cursor:crosshair;display:block}
 
 /* SVG */
-.cdot{fill:#b03828;stroke:#141310;stroke-width:1.2;cursor:pointer;transition:fill .12s}
+.cdot{fill:#d44030;stroke:#fff;stroke-width:1.5;cursor:pointer;transition:fill .12s;filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))}
 .cdot:hover{fill:var(--gold2)}
 .cdot.nearest{fill:rgba(212,168,67,.35);stroke:rgba(212,168,67,.6);stroke-width:1.5}
 .cdot.correct{fill:var(--green);stroke:white;stroke-width:2}
-.clbl{font-size:6px;fill:#4e4a44;font-family:'Bricolage Grotesque',sans-serif;pointer-events:none;user-select:none}
+.clbl{font-size:6px;fill:#3a3530;font-weight:600;font-family:'Bricolage Grotesque',sans-serif;pointer-events:none;user-select:none}
 .clbl.nearest{fill:rgba(212,168,67,.7)}
 .clbl.correct{fill:var(--green);font-weight:700}
-.click-cross line{stroke:var(--gold);stroke-width:1.5;pointer-events:none}
-.click-cross circle{fill:none;stroke:var(--gold);stroke-width:1.5;pointer-events:none}
-.click-line{stroke:rgba(212,168,67,.4);stroke-width:1;stroke-dasharray:3,3;pointer-events:none}
+.click-cross line{stroke:#c84020;stroke-width:2;pointer-events:none}
+.click-cross circle{fill:#c84020;stroke:white;stroke-width:2;pointer-events:none}
+.click-line{stroke:rgba(180,60,30,.5);stroke-width:1.5;stroke-dasharray:4,4;pointer-events:none}
 
 /* SPECTRE */
 .spcol{width:270px;flex-shrink:0;display:flex;flex-direction:column;overflow-y:auto;padding:.8rem .9rem}
@@ -115,7 +110,7 @@ body{font-family:'Bricolage Grotesque',sans-serif;background:var(--bg);color:var
 .pname{font-size:.73rem;font-weight:600}.pabbr{font-size:.6rem;color:var(--muted)}
 
 /* SUBMIT */
-.subbar{padding:.75rem 1rem;border-top:1px solid var(--border);background:var(--surf);display:flex;gap:.75rem;align-items:center;flex-shrink:0}
+.subbar{padding:.75rem 1rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surf);display:flex;gap:.75rem;align-items:center;flex-shrink:0}
 .subst{font-size:.68rem;color:var(--muted);flex:1;display:flex;flex-direction:column;gap:.18rem}
 .subst .ok{color:var(--green)}
 .bsub{padding:.72rem 1.5rem;background:var(--gold);color:#0c0b09;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;border:none;border-radius:8px;cursor:pointer;transition:all .15s;white-space:nowrap;flex-shrink:0}
@@ -191,7 +186,7 @@ body{font-family:'Bricolage Grotesque',sans-serif;background:var(--bg);color:var
   .mapcol{border-right:none;height:70vw;min-height:280px;flex:none}
   .gcontent{flex-direction:column;overflow:visible}
   .spcol{width:100%;flex:none;overflow-y:visible}
-  .subbar{position:sticky;bottom:0;z-index:10}
+  .subbar{position:sticky;top:0;z-index:10}
   .rcard{border-radius:15px 15px 0 0;max-height:85vh}
   .spbar{height:18px}
   .sph{width:26px;height:26px}
@@ -209,14 +204,7 @@ body{font-family:'Bricolage Grotesque',sans-serif;background:var(--bg);color:var
     <button class="bbig pr" onclick="startGame()">▶ Jouer</button>
     <button class="bbig gh" onclick="showLB()">🏆 Classement</button>
   </div>
-  <div class="s-load">
-    <span class="s-load-lbl">Charger vos candidats</span>
-    <div style="display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap">
-      <label class="filebtn">📂 Fichier (data-jeu.js / .json)<input type="file" id="dfile" accept=".js,.json" onchange="loadFile(event)"></label>
-      <button class="filebtn" onclick="pasteFromClipboard()">📋 Coller depuis l'admin</button>
-    </div>
-    <div id="fstatus">Candidats de démonstration par défaut</div>
-  </div>
+
 </div>
 
 <!-- GAME -->
@@ -256,15 +244,22 @@ body{font-family:'Bricolage Grotesque',sans-serif;background:var(--bg);color:var
         <button class="mob-tab active" id="tab-btn-map" onclick="switchTab('map',this)">🗺 Carte<span class="okbadge" id="ok-c-m" style="margin-left:.3rem">✓</span></button>
         <button class="mob-tab" id="tab-btn-parti" onclick="switchTab('parti',this)">🏛 Parti<span class="okbadge" id="ok-p-m" style="margin-left:.3rem">✓</span></button>
       </div>
+      <div class="subbar">
+        <div class="subst">
+          <span id="st-c">⬜ Cliquez sur la carte</span>
+          <span id="st-p">⬜ Aucun parti choisi</span>
+        </div>
+        <button class="bsub" id="bsub" disabled onclick="doSubmit()">Valider →</button>
+      </div>
       <div class="gcontent">
         <!-- MAP -->
         <div class="mapcol tab-map tab-active">
           <div class="mapinstr">Cliquez n'importe où sur la France</div>
           <div class="mapchosen" id="mapchosen">—</div>
           <svg id="svgfr" viewBox="0 0 550 560" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="0" width="550" height="560" fill="transparent" id="svg-bg"/>
-            <path fill="#1e1c18" stroke="#38352e" stroke-width="1" d="M305.1,6.2 L329.2,24.9 L345.3,43.6 L397.4,87.1 L437.6,105.8 L517.9,124.4 L525.9,143.1 L517.9,161.8 L509.9,199.1 L505.8,217.8 L509.9,230.2 L485.8,255.1 L465.7,292.4 L481.8,311.1 L493.8,329.8 L477.7,348.4 L505.8,429.3 L509.9,454.2 L489.8,479.1 L421.5,491.6 L325.2,504.0 L329.2,528.9 L285.0,541.3 L232.8,528.9 L192.7,510.2 L132.5,485.3 L140.5,466.7 L156.6,404.4 L160.6,348.4 L144.5,311.1 L124.5,286.2 L116.4,248.9 L104.4,230.2 L92.3,217.8 L44.2,205.3 L16.1,199.1 L12.0,174.2 L48.2,155.6 L120.4,149.3 L132.5,161.8 L144.5,136.9 L188.7,118.2 L208.8,93.3 L248.9,80.9 L269.0,68.4 L269.0,43.6 L281.0,18.7 Z"/>
-            <path fill="#1e1c18" stroke="#38352e" stroke-width="1" d="M516,380 L522,368 L530,376 L532,394 L527,412 L518,422 L508,414 L506,396 Z"/>
+            <rect x="0" y="0" width="550" height="560" fill="#c9d8e8" id="svg-bg"/>
+            <path fill="#e8e0d0" stroke="#c8b99a" stroke-width="1" d="M305.1,6.2 L329.2,24.9 L345.3,43.6 L397.4,87.1 L437.6,105.8 L517.9,124.4 L525.9,143.1 L517.9,161.8 L509.9,199.1 L505.8,217.8 L509.9,230.2 L485.8,255.1 L465.7,292.4 L481.8,311.1 L493.8,329.8 L477.7,348.4 L505.8,429.3 L509.9,454.2 L489.8,479.1 L421.5,491.6 L325.2,504.0 L329.2,528.9 L285.0,541.3 L232.8,528.9 L192.7,510.2 L132.5,485.3 L140.5,466.7 L156.6,404.4 L160.6,348.4 L144.5,311.1 L124.5,286.2 L116.4,248.9 L104.4,230.2 L92.3,217.8 L44.2,205.3 L16.1,199.1 L12.0,174.2 L48.2,155.6 L120.4,149.3 L132.5,161.8 L144.5,136.9 L188.7,118.2 L208.8,93.3 L248.9,80.9 L269.0,68.4 L269.0,43.6 L281.0,18.7 Z"/>
+            <path fill="#e8e0d0" stroke="#c8b99a" stroke-width="1" d="M516,380 L522,368 L530,376 L532,394 L527,412 L518,422 L508,414 L506,396 Z"/>
             <g id="click-marker"></g>
           </svg>
         </div>
@@ -277,13 +272,6 @@ body{font-family:'Bricolage Grotesque',sans-serif;background:var(--bg);color:var
           <div class="psec">Ou choisir un parti</div>
           <div class="pgrid" id="pgrid"></div>
         </div>
-      </div>
-      <div class="subbar">
-        <div class="subst">
-          <span id="st-c">⬜ Aucun endroit cliqué</span>
-          <span id="st-p">⬜ Aucun parti choisi</span>
-        </div>
-        <button class="bsub" id="bsub" disabled onclick="doSubmit()">Valider →</button>
       </div>
     </div>
   </div>
@@ -393,35 +381,9 @@ const CITIES=[
 // ═══ STATE ═══
 let deck=[],round=0,total=0,chCity=null,chClickLatLon=null,chClickPx=null,chParty=null,spVal=null,tInt=null,tLeft=60,answered=false,pendLB=null;
 
-// ═══ FILE ═══
-function loadFile(e){
-  const f=e.target.files[0]; if(!f) return;
-  const r=new FileReader();
-  r.onload=ev=>{
-    try{
-      let s=ev.target.result.trim();
-      if(s.startsWith('{')||s.startsWith('[')) GD=JSON.parse(s);
-      else { s=s.replace(/^.*?=\s*/,'').replace(/;\s*$/,''); GD=JSON.parse(s); }
-      document.getElementById('fstatus').textContent=`✓ ${GD.candidates?.length||0} candidats chargés`;
-    }catch(err){ document.getElementById('fstatus').textContent='❌ Fichier invalide'; }
-  };
-  r.readAsText(f);
-}
 
-async function pasteFromClipboard(){
-  try{
-    const text = await navigator.clipboard.readText();
-    const data = JSON.parse(text.trim());
-    if(data.candidates){
-      GD = data;
-      document.getElementById('fstatus').textContent=`✅ ${GD.candidates.length} candidats collés depuis l'admin !`;
-    } else {
-      document.getElementById('fstatus').textContent='❌ Données non reconnues';
-    }
-  } catch(e){
-    document.getElementById('fstatus').textContent='❌ Impossible de lire le presse-papier (autorisez l\'accès)';
-  }
-}
+
+
 
 // ═══ MOBILE TABS ═══
 function switchTab(tab, btn){
@@ -496,48 +458,31 @@ function onMapClick(e) {
   });
   if (!best) return;
 
-  chCity = best.name;
   chClickPx = { x: px, y: py };
   chClickLatLon = { lat: clickLat, lon: clickLon };
 
-  // Update city dots highlight
-  document.querySelectorAll('.cdot').forEach(d => d.classList.remove('nearest'));
-  document.querySelectorAll('.clbl').forEach(l => l.classList.remove('nearest'));
-  const dot = document.querySelector(`.cdot[data-n="${CSS.escape(best.name)}"]`);
-  dot?.classList.add('nearest');
-  dot?.nextElementSibling?.classList.add('nearest');
-
-  // Draw crosshair + dashed line to nearest city
+  // Draw pin at click point only (no nearest city highlight)
   const mk = document.getElementById('click-marker');
   mk.innerHTML = '';
   const ns = 'http://www.w3.org/2000/svg';
 
-  // Dashed line from click to nearest city
-  const line = document.createElementNS(ns, 'line');
-  line.setAttribute('x1', px); line.setAttribute('y1', py);
-  line.setAttribute('x2', best.x); line.setAttribute('y2', best.y);
-  line.classList.add('click-line');
-  mk.appendChild(line);
-
-  // Crosshair at click point
+  // Pin: circle + cross
   const g = document.createElementNS(ns, 'g');
   g.classList.add('click-cross');
-  const sz = 6;
+  const sz = 7;
   [[px-sz,py,px+sz,py],[px,py-sz,px,py+sz]].forEach(([x1,y1,x2,y2]) => {
     const l = document.createElementNS(ns,'line');
     l.setAttribute('x1',x1);l.setAttribute('y1',y1);l.setAttribute('x2',x2);l.setAttribute('y2',y2);
     g.appendChild(l);
   });
   const circ = document.createElementNS(ns,'circle');
-  circ.setAttribute('cx',px); circ.setAttribute('cy',py); circ.setAttribute('r',4);
+  circ.setAttribute('cx',px); circ.setAttribute('cy',py); circ.setAttribute('r',5);
   g.appendChild(circ);
   mk.appendChild(g);
 
-  const distKm = Math.round(bestDist);
-  document.getElementById('mapchosen').textContent = distKm < 20
-    ? `📍 ${best.name}`
-    : `📍 ${best.name} (~${distKm} km)`;
+  document.getElementById('mapchosen').textContent = '📍 Point placé';
   document.getElementById('ok-c').classList.add('vis');
+  ['ok-c','ok-c-m'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.add('vis');});
   upSub();
 }
 
@@ -613,7 +558,7 @@ function updDots(){
 }
 
 function loadRound(idx){
-  answered=false; chCity=null; chClickLatLon=null; chClickPx=null; chParty=null; spVal=null; tLeft=60;
+  answered=false; chClickLatLon=null; chClickPx=null; chParty=null; spVal=null; tLeft=60;
   const c=deck[idx];
   document.getElementById('cimg').src=c.photo||'';
   document.getElementById('cname').textContent=c.nom||'—';
@@ -623,8 +568,8 @@ function loadRound(idx){
   document.getElementById('chints').innerHTML=(c.indices||[]).map((h,i)=>`
     <div class="hint" style="animation-delay:${i*.1}s"><span class="hint-i">${h.ico||'💬'}</span><span class="hint-t">${h.texte||''}</span></div>`).join('');
   // reset map
-  document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('nearest','correct'));
-  document.querySelectorAll('.clbl').forEach(l=>l.classList.remove('nearest','correct'));
+  document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('correct'));
+  document.querySelectorAll('.clbl').forEach(l=>l.classList.remove('correct'));
   document.getElementById('click-marker').innerHTML='';
   document.getElementById('mapchosen').textContent='—';
   document.getElementById('ok-c').classList.remove('vis');
@@ -650,9 +595,9 @@ function renderT(t){
 }
 
 function upSub(){
-  const ok=chCity&&(chParty!==null||spVal!==null);
+  const ok=chClickLatLon&&(chParty!==null||spVal!==null);
   document.getElementById('bsub').disabled=!ok;
-  document.getElementById('st-c').innerHTML=chCity?`<span class="ok">✅ ${chCity}</span>`:'⬜ Aucun endroit cliqué';
+  document.getElementById('st-c').innerHTML=chClickLatLon?`<span class="ok">✅ Point placé</span>`:'⬜ Cliquez sur la carte';
   document.getElementById('st-p').innerHTML=(chParty||spVal!==null)?`<span class="ok">✅ Parti renseigné</span>`:'⬜ Aucun parti choisi';
   // sync mobile badges
   ['ok-c','ok-c-m'].forEach(id=>{const el=document.getElementById(id);if(el){el.classList.toggle('vis',!!chCity);}});
